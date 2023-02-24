@@ -18,6 +18,7 @@ VSCode Extension to test Azure Auth with MSAL
     "title": "AzMSAL: Login with an Azure Account"
     ```
 - Open 'Azure Logs' from Output pane dropdown
+- Running this command will reproduce issue: [msaljs#4879](https://github.com/AzureAD/microsoft-authentication-library-for-js/issues/4879)
 - Notice the errors, as in screenshot below:
 
    <img src="./media/error.png" />
