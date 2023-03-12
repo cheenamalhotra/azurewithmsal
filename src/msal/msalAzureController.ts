@@ -41,7 +41,7 @@ export class MsalAzureController extends AzureController {
 			}
 		};
 	}
-	
+
 	public async login(authType: AzureAuthType): Promise<IAccount | undefined> {
 		let azureAuth = await this.getAzureAuthInstance(authType);
 		let response = await azureAuth!.startLogin();
@@ -95,8 +95,8 @@ export class MsalAzureController extends AzureController {
 				account, tenantId!, settings
 			);
 			return token;
-		} catch (ex: any) {
-			this._vscodeWrapper.showErrorMessage(ex);
+		} catch (ex) {
+			this._vscodeWrapper.showErrorMessage(ex as string);
 		}
 	}
 

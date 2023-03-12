@@ -40,9 +40,9 @@ interface ErrorResponse {
 }
 
 interface BodyResponse {
-	statusCode: number, 
-	statusMessage: string | undefined, 
-	headers: Record<string, string>, 
+	statusCode: number,
+	statusMessage: string | undefined,
+	headers: Record<string, string>,
 	body: string
 }
 

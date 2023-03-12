@@ -35,17 +35,18 @@ export class MsalCachePluginProvider {
 				const cache = await fsPromises.readFile(this._msalFilePath, { encoding: 'utf8' });
 				try {
 					cacheContext.tokenCache.deserialize(cache);
-				} catch (e: any) {
+				} catch (e) {
 					// Handle deserialization error in cache file in case file gets corrupted.
 					// Clearing cache here will ensure account is marked stale so re-authentication can be triggered.
-					this._logger.verbose(`MsalCachePlugin: Error occurred when trying to read cache file, file contents will be cleared: ${e.message}`);
+					this._logger.verbose(`MsalCachePlugin: Error occurred when trying to read cache file, file contents will be cleared: ${e}`);
 					await fsPromises.writeFile(this._msalFilePath, '', { encoding: 'utf8' });
 				}
 				this._logger.verbose(`MsalCachePlugin: Token read from cache successfully.`);
-			} catch (e: any) {
-				if (e.code === 'ENOENT') {
+			} catch (e) {
+				const errorCode = (e as any).code;
+				if (errorCode === 'ENOENT') {
 					// File doesn't exist, log and continue
-					this._logger.verbose(`MsalCachePlugin: Cache file not found on disk: ${e.code}`);
+					this._logger.verbose(`MsalCachePlugin: Cache file not found on disk: ${errorCode}`);
 				} else {
 					this._logger.error(`MsalCachePlugin: Failed to read from cache file: ${e}`);
 					throw e;

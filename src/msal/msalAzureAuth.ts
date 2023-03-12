@@ -148,7 +148,7 @@ export abstract class MsalAzureAuth {
 		};
 		try {
 			return await this.clientApplication.acquireTokenSilent(tokenRequest);
-		} catch (e: any) {
+		} catch (e) {
 			this.logger.error('Failed to acquireTokenSilent', e);
 			if (e instanceof InteractionRequiredAuthError) {
 				// build refresh token request
@@ -157,10 +157,8 @@ export abstract class MsalAzureAuth {
 					displayName: ''
 				};
 				return this.handleInteractionRequired(tenant, settings);
-			} else if (e.name === 'ClientAuthError') {
-				this.logger.error(e.message);
 			}
-			this.logger.error('Failed to silently acquire token, not InteractionRequiredAuthError');
+			this.logger.error(`Failed to silently acquire token, not InteractionRequiredAuthError: ${e}`);
 			return null;
 		}
 	}

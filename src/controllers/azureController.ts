@@ -185,8 +185,8 @@ export abstract class AzureController {
 
 		try {
 			await fs.mkdir(defaultOutputLocation, { recursive: true });
-		} catch (e: any) {
-			if (e.code !== 'EEXIST') {
+		} catch (e) {
+			if ((e as any).code !== 'EEXIST') {
 				this.logger.error(`Creating the base directory failed... ${e}`);
 				return undefined;
 			}
@@ -194,8 +194,8 @@ export abstract class AzureController {
 
 		try {
 			await fs.mkdir(storagePath, { recursive: true });
-		} catch (e: any) {
-			if (e.code !== 'EEXIST') {
+		} catch (e) {
+			if ((e as any).code !== 'EEXIST') {
 				this.logger.error(`Initialization of vscode-mssql storage failed: ${e}`);
 				this.logger.error('Azure accounts will not be available');
 				return undefined;
