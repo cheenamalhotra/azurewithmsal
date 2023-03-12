@@ -22,3 +22,10 @@ VSCode Extension to test Azure Auth with MSAL
 - Notice the errors, as in screenshot below:
 
    <img src="./media/error.png" />
+
+## Resolution
+
+To resolve the error, upgrade the below dependencies in package.json and run `yarn`:
+
+- "http-proxy-agent": "^5.0.0"
+- "https-proxy-agent": "^5.0.0"
