@@ -29,3 +29,7 @@ To resolve the error, upgrade the below dependencies in package.json and run `ya
 
 - "http-proxy-agent": "^5.0.0"
 - "https-proxy-agent": "^5.0.0"
+
+## UPDATE
+
+**Issue is resolved with latest MSAL v1.16.0 with it's default HttpClient implementation.**

@@ -10,7 +10,6 @@ import * as Constants from '../constants/constants';
 import { AzureController } from '../controllers/azureController';
 import { AzureAuthType, IAADResource, IAccount, IToken } from '../models/contracts/azure';
 import { getAzureActiveDirectoryConfig } from '../utils';
-import { HttpClientCurrent } from './httpClientCurrent';
 import { MsalAzureAuth } from './msalAzureAuth';
 import { MsalAzureCodeGrant } from './msalAzureCodeGrant';
 import { MsalAzureDeviceCode } from './msalAzureDeviceCode';
@@ -119,8 +118,7 @@ export class MsalAzureController extends AzureController {
 						loggerCallback: this.getLoggerCallback(),
 						logLevel: MsalLogLevel.Trace,
 						piiLoggingEnabled: true
-					},
-					networkClient: new HttpClientCurrent()
+					}
 				},
 				cache: {
 					cachePlugin: this._cachePluginProvider?.getCachePlugin()
